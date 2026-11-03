@@ -17,39 +17,28 @@ export const Route = createFileRoute("/")({ component: App });
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Continuous Optimal Transport",
+    title: "Histogram OT",
     href: "/publications/something",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "(1+\u03B5)-approximation for transport between axis-aligned histograms",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Scalable Wₚ OT",
+    href: "/publications/something-else",
     description:
-      "New algorithms to efficiently calculate the 'cost' of transforming one 2D histogram into another.",
+      "A randomized algorithm extending high-efficiency transport to the W ͚ case",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Robust Semi-Discrete OT",
+    href: "/publications/something-else",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Fast algorithms for noise-resilient and partial optimal transport",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
+    title: "Wasserstein Barycenters",
+    href: "/publications/something-else",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Near-linear time approximation for the 'average' of multiple distributions",
   },
 ] as const;
 
@@ -89,41 +78,20 @@ function App() {
                         <NavigationMenuContent>
                           <div>
                             <ul className="grid w-100 gap-2 md:w-125 md:grid-cols-2 lg:w-150">
-                              <NavigationMenuListItem
-                                href="/"
-                                title="Histogram OT"
-                              >
-                                (1+ϵ)-approximation for transport between
-                                axis-aligned histograms
-                              </NavigationMenuListItem>
-                              <NavigationMenuListItem
-                                href="/"
-                                title={`Scalable W${(<span className="align-sub text-xs">p</span>)} OT`}
-                              >
-                                A randomized algorithm extending high-efficiency
-                                transport to the W
-                                <span className="align-sub text-xs">∞</span>{" "}
-                                case
-                              </NavigationMenuListItem>
-                              <NavigationMenuListItem
-                                href="/"
-                                title="Robust Semi-Discrete OT"
-                              >
-                                Fast algorithms for noise-resilient and partial
-                                optimal transport
-                              </NavigationMenuListItem>
-                              <NavigationMenuListItem
-                                href="/"
-                                title="Wasserstein Barycenters"
-                              >
-                                Near-linear time approximation for computing the
-                                "average" of multiple distributions.
-                              </NavigationMenuListItem>
+                              {components.map((item) => (
+                                <NavigationMenuListItem
+                                  href={item.href}
+                                  title={item.title}
+                                >
+                                  {item.description}
+                                </NavigationMenuListItem>
+                              ))}
                             </ul>
                             <Button
                               variant="link"
                               onClick={() => navigate({ to: "/" })}
                               render={<Link to="/">View All</Link>}
+                              className="text-muted-foreground hover:text-foreground"
                             />
                           </div>
                         </NavigationMenuContent>
@@ -141,7 +109,33 @@ function App() {
               </div>
             </div>
           </header>
-          
+          <main className="w-full">
+            <section className="bg-linear-to-b from-(--color-background) to-(--color-card) py-8 md:grid md:grid-cols-2 md:gap-4">
+              <div
+                className={`mx-auto flex w-full max-w-4xl flex-col items-center justify-center gap-6 text-center ${device && device.type === "mobile" ? "order-2" : ""}`}
+              >
+                <h1 className="max-w-4xl font-heading text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
+                  Keegan Yao
+                </h1>
+                <span className="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
+                  Computer Science Researcher
+                </span>
+                <p className="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
+                  I develop scalable algorithms for Optimal Transport (OT) by
+                  leveraging the geometric and structural properties of its
+                  solutions. My research combines continuous and combinatorial
+                  optimization to advance machine learning and data science.
+                </p>
+              </div>
+              <img
+                src="src/assets/profile1.jpeg"
+                className={`w-auto rounded-4xl border border-border sm:max-h-96 md:max-h-224 ${device && device.type === "mobile" ? "order-1" : ""}`}
+              />
+            </section>
+            <div className="mx-auto flex h-svh w-full flex-col bg-card px-4 pb-24 sm:px-6">
+              height
+            </div>
+          </main>
         </main>
       </div>
     </div>
