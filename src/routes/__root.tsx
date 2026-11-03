@@ -1,4 +1,9 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Outlet,
+  Scripts,
+  createRootRoute,
+} from "@tanstack/react-router";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import appCss from "../styles.css?url";
@@ -31,7 +36,7 @@ export const Route = createRootRoute({
     </main>
   ),
   shellComponent: RootDocument,
-})
+});
 
 function RootDocument() {
   return (
@@ -46,5 +51,5 @@ function RootDocument() {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }

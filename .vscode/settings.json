@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "jkillian.custom-local-formatters",
+  "customLocalFormatters.formatters": [
+    {
+      "command": "bun fmt --stdin-filepath ${file}",
+      "languages": ["typescript", "javascript", "typescriptreact", "javascriptreact", "json", "markdown"]
+    }
+  ]
+}
