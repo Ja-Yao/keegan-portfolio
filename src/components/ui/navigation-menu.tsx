@@ -168,7 +168,7 @@ function NavigationMenuListItem({
     <li {...props}>
       <NavigationMenuLink render={<Link to={href} />}>
         <div className="flex flex-col gap-1 text-sm">
-          <div className="leading-none font-medium">{title}</div>
+          <div className="leading-none font-medium line-clamp-1">{title}</div>
           <div className="line-clamp-2 text-muted-foreground">{children}</div>
         </div>
       </NavigationMenuLink>
