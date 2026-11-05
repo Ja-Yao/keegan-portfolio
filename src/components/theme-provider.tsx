@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
 import { ScriptOnce } from "@tanstack/react-router";
+import { createContext, use, useEffect, useState } from "react";
 
 export type Theme = "dark" | "light" | "system";
 
@@ -21,7 +21,7 @@ function getThemeScript(storageKey: string, defaultTheme: Theme) {
   return `(function(){try{var t=localStorage.getItem(${key});if(t!=='light'&&t!=='dark'&&t!=='system'){t=${fallback}}var d=matchMedia('(prefers-color-scheme: dark)').matches;var r=t==='system'?(d?'dark':'light'):t;var e=document.documentElement;e.classList.add(r);e.style.colorScheme=r}catch(e){}})();`;
 }
 
-const ThemeProviderContext = createContext<ThemeProviderState>({
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>({
   theme: "system",
   setTheme: () => {},
 });
@@ -87,8 +87,5 @@ export function ThemeProvider({
 }
 
 export function useTheme() {
-  const context = useContext(ThemeProviderContext);
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider");
-  return context;
+  return use(ThemeProviderContext);
 }
