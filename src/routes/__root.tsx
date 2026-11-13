@@ -5,6 +5,7 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 
+import { Header } from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import appCss from "../styles.css?url";
 
@@ -46,6 +47,7 @@ function RootDocument() {
       </head>
       <body>
         <ThemeProvider defaultTheme="system" storageKey="theme">
+          <Header />
           <Outlet />
         </ThemeProvider>
         <Scripts />
