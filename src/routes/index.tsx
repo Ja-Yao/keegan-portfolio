@@ -1,6 +1,6 @@
 import profileImage from "@/assets/profile1.jpeg";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -36,7 +36,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import Autoplay from "embla-carousel-autoplay";
 import { Mail, Menu } from "lucide-react";
 
@@ -77,7 +77,7 @@ const components: RecentWork[] = [
   {
     title:
       "Efficient Algorithms for Robust and Partial Semi-Discrete Optimal Transport",
-    href: "/publications/something-else",
+    href: "/publications/something-other",
     conference: "NeurIPS 2025",
     pages: "pp. 44053\u201344108",
     description:
@@ -88,7 +88,7 @@ const components: RecentWork[] = [
   {
     title:
       "Efficient Approximation Algorithm for Computing Wasserstein Barycenter under Euclidean Metric",
-    href: "/publications/something-else",
+    href: "/publications/something-different",
     conference: "SODA 2025",
     pages: "pp. 4809\u20134826",
     description:
@@ -151,6 +151,8 @@ const navLinks = [
 ] as const;
 
 function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex min-h-svh flex-col [--fd-layout-width:1400px]">
       {/* ───────── Header ───────── */}
@@ -163,14 +165,14 @@ function App() {
                 render={
                   <Button
                     variant="outline"
-                    size="icon-lg"
+                    size="icon"
                     className="md:hidden"
                     aria-label="Open menu"
-                  />
+                  >
+                    <Menu />
+                  </Button>
                 }
-              >
-                <Menu />
-              </SheetTrigger>
+              />
               <SheetContent side="left" className="w-72 max-w-[85vw]">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
@@ -181,12 +183,12 @@ function App() {
                 <ul className="flex flex-col gap-1 px-4">
                   {navLinks.map((link) => (
                     <li key={link.label}>
-                      <Link
-                        to={link.to}
+                      <a
+                        href={link.to}
                         className="block rounded-md px-3 py-3 text-base font-medium hover:bg-accent"
                       >
                         {link.label}
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -219,9 +221,11 @@ function App() {
                       </ul>
                       <Button
                         variant="link"
-                        render={<Link to="/">View All</Link>}
                         className="text-muted-foreground hover:text-foreground"
-                      />
+                        onClick={() => navigate({ to: "/" })}
+                      >
+                        View All
+                      </Button>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -261,7 +265,7 @@ function App() {
               <p className="text-base text-balance text-muted-foreground sm:text-lg">
                 Computer Science Researcher
               </p>
-              <p className="text-base text-balance text-muted-foreground sm:text-lg">
+              <p className="sm:text-md text-base text-balance text-muted-foreground">
                 I develop scalable algorithms for Optimal Transport (OT) by
                 leveraging the geometric and structural properties of its
                 solutions. My research combines continuous and combinatorial
@@ -271,14 +275,15 @@ function App() {
             <ul className="flex flex-wrap justify-center gap-2 sm:gap-3">
               {socials.map((s) => (
                 <li key={s.label}>
-                  <Button
-                    size="icon-lg"
-                    variant="outline"
-                    aria-label={s.label}
-                    render={<a href={s.href} />}
+                  <a
+                    href={s.href}
+                    className={buttonVariants({
+                      variant: "default",
+                      size: "icon-lg",
+                    })}
                   >
                     {s.icon}
-                  </Button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -298,9 +303,9 @@ function App() {
               plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
             >
               <CarouselContent className="-ml-2 sm:-ml-4">
-                {components.map((item) => (
+                {components.map((item, index) => (
                   <CarouselItem
-                    key={item.href}
+                    key={`${index}-${item.title}`}
                     className="basis-full pl-2 sm:pl-4 md:basis-1/2 lg:basis-1/3"
                   >
                     <Card className="h-full">
@@ -322,7 +327,9 @@ function App() {
                       </CardContent>
                       <CardFooter className="justify-end">
                         <CardAction>
-                          <Button render={<Link to="/">Learn More</Link>} />
+                          <Button onClick={() => navigate({ to: "/" })}>
+                            Learn More
+                          </Button>
                         </CardAction>
                       </CardFooter>
                     </Card>
