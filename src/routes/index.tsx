@@ -17,10 +17,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { components, socials } from "@/lib/constants";
+import { socials } from "@/lib/constants";
+import { publications } from "@/lib/publications";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { cn } from "cn";
-import Autoplay from "embla-carousel-autoplay";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -64,10 +64,10 @@ function App() {
                     href={s.href}
                     className={cn(
                       buttonVariants({
-                        variant: index == 0 ? "default" : "outline",
+                        variant: index == 0 ? "default" : "secondary",
                         size: "icon-lg",
                       }),
-                      index > 0 ? "border-border rounded-full" : "rounded-full"
+                      index > 0 ? "rounded-full border-border" : "rounded-full"
                     )}
                   >
                     {s.icon}
@@ -78,20 +78,16 @@ function App() {
           </div>
         </section>
 
-        {/* ───────── Recent work ───────── */}
+        {/* ───────── Relevant work ───────── */}
         <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-12 lg:pb-24">
           <h2 className="scroll-m-20 pb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Recent Work
+            Relevant Work
           </h2>
           {/* Horizontal padding leaves room for the arrows on tablet/desktop */}
           <div className="md:px-6 lg:px-10">
-            <Carousel
-              className="w-full"
-              opts={{ align: "start", loop: true }}
-              plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
-            >
+            <Carousel className="w-full" opts={{ align: "start", loop: true }}>
               <CarouselContent className="-ml-2 py-2 sm:-ml-4">
-                {components.map((item, index) => (
+                {publications.map((item, index) => (
                   <CarouselItem
                     key={`${index}-${item.title}`}
                     className="basis-full pl-2 sm:pl-4 md:basis-1/2 lg:basis-1/3"
