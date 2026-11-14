@@ -133,7 +133,7 @@ function BentoHeadline({
     <p
       data-slot="bento-headline"
       className={cn(
-        "max-w-[24ch] leading-[1.1] font-semibold tracking-tight text-balance",
+        "leading-[1.1] font-semibold tracking-tight text-balance",
         headlineSizes[size],
         className
       )}

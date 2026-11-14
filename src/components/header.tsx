@@ -1,4 +1,4 @@
-import { components } from "@/lib/constants";
+import { publications } from "@/lib/publications";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
@@ -24,16 +24,16 @@ import {
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "Publications", to: "/" },
-  { label: "About", to: "/" },
+  { label: "Publications", to: "/publications/" },
+  { label: "About", to: "/about" },
 ] as const;
 
 export function Header() {
   const navigate = useNavigate();
 
   return (
-    <header id="nd-nav" className="sticky top-0 z-40 h-14" aria-label="Main">
-      <div className="h-full border-b border-border bg-background/80 backdrop-blur-lg">
+    <header id="nd-nav" className="sticky top-0 z-20 h-14" aria-label="Main">
+      <div className="h-full border-b border-border bg-background/80 backdrop-blur-sm">
         <nav className="mx-auto flex h-full w-full max-w-(--fd-layout-width) items-center justify-between px-4 sm:px-6 lg:px-12">
           {/* Mobile menu: CSS-driven, so it works at any width and has no flash on load */}
           <Sheet>
@@ -73,7 +73,7 @@ export function Header() {
 
           {/* Tablet + desktop navigation */}
           <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-2">
               <NavigationMenuItem>
                 <NavigationMenuLink
                   className={navigationMenuTriggerStyle()}
@@ -81,14 +81,18 @@ export function Header() {
                 />
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Publications</NavigationMenuTrigger>
+                <NavigationMenuTrigger
+                  onClick={() => navigate({ to: "/publications" })}
+                >
+                  Publications
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div>
                     <ul className="grid w-72 gap-2 md:w-md md:grid-cols-2 lg:w-150">
-                      {components.map((item) => (
+                      {publications.slice(0, 4).map((item) => (
                         <NavigationMenuListItem
-                          key={item.href}
-                          href={item.href}
+                          key={item.id}
+                          href={`/publications/${item.id}`}
                           title={item.title}
                         >
                           {item.description}
@@ -98,7 +102,7 @@ export function Header() {
                     <Button
                       variant="link"
                       className="text-muted-foreground hover:text-foreground"
-                      onClick={() => navigate({ to: "/" })}
+                      onClick={() => navigate({ to: "/publications" })}
                     >
                       View All
                     </Button>

@@ -1,6 +1,6 @@
 import profileImage from "@/assets/profile1.jpeg";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -17,16 +17,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { socials } from "@/lib/constants";
 import { publications } from "@/lib/publications";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { socials } from "@/lib/socials";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { cn } from "cn";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
-  const navigate = useNavigate();
-
   return (
     <div className="flex min-h-svh flex-col [--fd-layout-width:1400px]">
       <main className="mx-auto w-full max-w-(--fd-layout-width) flex-1">
@@ -111,9 +109,13 @@ function App() {
                       </CardContent>
                       <CardFooter className="justify-end">
                         <CardAction>
-                          <Button onClick={() => navigate({ to: "/" })}>
+                          <Link
+                            to="/publications/$publicationId"
+                            params={{ publicationId: item.id }}
+                            className={buttonVariants({ variant: "default" })}
+                          >
                             Learn More
-                          </Button>
+                          </Link>
                         </CardAction>
                       </CardFooter>
                     </Card>

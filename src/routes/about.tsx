@@ -1,7 +1,6 @@
-import Aurora from "@/components/Aurora";
+import { AuthorHoverCard } from "@/components/author-hover-card";
+import Particles from "@/components/Particles";
 import { useTheme } from "@/components/theme-provider";
-import { TransportMotif } from "@/components/transport-motif";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
   BentoBody,
@@ -11,13 +10,8 @@ import {
   BentoLabel,
 } from "@/components/ui/bento";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { Separator } from "@/components/ui/separator";
-import { socials } from "@/lib/constants";
+import { socials } from "@/lib/socials";
 import { cn } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import {
@@ -133,33 +127,23 @@ function AboutPage() {
         {/* ------------------------------ Hero ------------------------------ */}
         <section className="relative isolate overflow-hidden">
           <div
-            aria-hidden={true}
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full w-full"
-          >
-            <Aurora
-              colorStops={["#167942", "#5fd085", "#c27b2b", "#167942"]}
-              amplitude={1.4}
-              blend={0.5}
-              height={0.45}
-              speed={1}
-              glow={1.2}
-              scale={1}
-              brightness={1}
-              layers={3}
-              direction="top"
-              opacity={1}
-              mouseInteraction={false}
-              intro
-              lightMode={theme === "light"}
-            />
-          </div>
+            aria-hidden
+            className="pointer-events-none absolute top-0 left-1/2 -z-10 h-112 w-4xl -translate-x-1/2 rounded-full bg-primary/20 blur-3xl"
+          />
           <div className="mx-auto max-w-4xl px-6 pt-24 pb-20 text-center sm:pt-32">
             <h1 className="text-5xl font-bold tracking-tight text-balance sm:text-7xl">
               I study how points become distributions.
             </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-balance text-muted-foreground sm:text-xl">
+              I'm Keegan, a recent Ph.D. graduate in computer science from Duke
+              University.
+            </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <a href="/cv.pdf" className={cn(buttonVariants({ size: "lg" }))}>
+              <a
+                href="/cv.pdf"
+                className={buttonVariants({ variant: "default" })}
+              >
                 <Download aria-hidden /> Download CV
               </a>
               <a
@@ -174,11 +158,11 @@ function AboutPage() {
             </div>
           </div>
         </section>
-        <Separator className="h-0.5!" />
+        <Separator />
         <section
           id="glance"
           aria-labelledby="glance-title"
-          className="mx-auto max-w-384 scroll-mt-20 border-x-2 border-border px-6 py-12 md:py-16"
+          className="mx-auto max-w-384 scroll-mt-20 border-x border-border px-6 py-12 md:py-16"
         >
           <h2
             id="glance-title"
@@ -193,13 +177,39 @@ function AboutPage() {
               icon={FlaskConical}
               colSpan={4}
               rowSpan={3}
+              className="relative overflow-hidden"
             >
-              <BentoHeadline size="lg">
+              <BentoHeadline size="lg" className="z-10">
                 Scalable, differentiable optimal transport for high-dimensional
                 data
               </BentoHeadline>
-              <div className="mt-auto">
-                <TransportMotif seed={7} animate />
+              <div className="h-100 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_75%)]">
+                <Particles
+                  particleColors={["#ffffff", "#ffffff", "#d98a2b"]}
+                  particleCount={2660}
+                  particleSpread={12}
+                  speed={0.025}
+                  particleBaseSize={100}
+                  glow={0.4}
+                  twinkle={0.2}
+                  moveParticlesOnHover={false}
+                  hoverEffect="repel"
+                  sizeRandomness={1}
+                  shape="circle"
+                  connections
+                  connectionDistance={110}
+                  particleHoverFactor={1}
+                  hoverRadius={140}
+                  drift="none"
+                  driftSpeed={1}
+                  alphaParticles
+                  cameraDistance={20}
+                  variation={6}
+                  opacity={1}
+                  clickBurst={false}
+                  intro
+                  lightMode={theme === "light"}
+                />
               </div>
             </BentoCard>
 
@@ -311,7 +321,7 @@ function AboutPage() {
             </BentoCard>
           </BentoGrid>
         </section>
-        <Separator className="h-0.5!" />
+        <Separator />
         {/* ----------------------- Alternating sections ---------------------- */}
         <Row
           id="phd"
@@ -326,35 +336,15 @@ function AboutPage() {
           <p>
             I completed my Ph.D. in Computer Science at Duke University, advised
             by{" "}
-            <HoverCard>
-              <HoverCardTrigger
-                render={
-                  <a
-                    href={"https://users.cs.duke.edu/~pankaj/"}
-                    className="font-medium text-foreground underline decoration-primary/50 underline-offset-4 transition-colors hover:decoration-primary"
-                  >
-                    Pankaj K. Agarwal
-                  </a>
-                }
-              />
-              <HoverCardContent className="flex w-auto flex-col gap-0.5">
-                <div className="grid grid-cols-[1fr_auto] gap-4">
-                  <Avatar>
-                    <AvatarFallback>PA</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h6 className="text-lg font-semibold">Pankaj K. Agarwal</h6>
-                    <div className="flex flex-col">
-                      <span>RJR Nabisco Professor of Computer Science</span>
-                      <span>Professor of Mathematics</span>
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">
-                      Duke University
-                    </div>
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+            <AuthorHoverCard
+              name="Pankaj K. Agarwal"
+              link="https://users.cs.duke.edu/~pankaj/"
+              position={[
+                "RJR Nabisco Professor of Computer Science",
+                "Professor of Mathematics<",
+              ]}
+              affiliation="Duke University"
+            />
             . My research focused on the geometry of optimal transport (OT): how
             do we efficiently move the structure of points into the realm of
             distributions? I developed scalable algorithms that bridged this gap
@@ -374,11 +364,11 @@ function AboutPage() {
           }
         >
           <p>
-            I hold Bachelor's Degrees in Computer Science and Mathematics from the
-            University of Connecticut. My undergraduate research was
+            I hold Bachelor's Degrees in Computer Science and Mathematics from
+            the University of Connecticut. My undergraduate research was
             multifaceted: I wrote my honors thesis on the Ricci flow under
-            negative curvature and collaborated on projects spanning geometric data
-            analysis, phylogenetic tree comparison, and high-dimensional
+            negative curvature and collaborated on projects spanning geometric
+            data analysis, phylogenetic tree comparison, and high-dimensional
             entropic uncertainty relations.
           </p>
         </Row>
