@@ -81,7 +81,7 @@ function PublicationPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <header className="mt-8 max-w-3xl">
+      <header className="mt-8 max-w-7xl">
         <Badge
           className={
             p.venueType === "conference" ? conferenceStyles : journalStyles

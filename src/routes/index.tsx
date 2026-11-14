@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col [--fd-layout-width:1400px]">
+    <div className="flex flex-col [--fd-layout-width:1400px]">
       <main className="mx-auto w-full max-w-(--fd-layout-width) flex-1">
         {/* ───────── Hero ───────── */}
         <section className="grid items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:gap-12 lg:px-12 lg:py-16">
@@ -77,7 +77,7 @@ function App() {
         </section>
 
         {/* ───────── Relevant work ───────── */}
-        <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-12 lg:pb-24">
+        <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-12 lg:pb-16">
           <h2 className="scroll-m-20 pb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
             Relevant Work
           </h2>
