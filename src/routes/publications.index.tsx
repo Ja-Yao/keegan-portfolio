@@ -104,8 +104,7 @@ function PublicationsPage() {
             hoverEffect="repel"
             sizeRandomness={1}
             shape="circle"
-            connections
-            connectionDistance={110}
+            connections={false}
             particleHoverFactor={1}
             hoverRadius={140}
             drift="none"
