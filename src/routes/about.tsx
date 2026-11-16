@@ -243,18 +243,18 @@ function AboutPage() {
             The short version
           </h2>
           <BentoGrid>
-            {/* ── Row 1: Left (Dissertation), Middle (Talks), Right (PhD) ── */}
+            {/* ── Row 1: Dissertation (4 cols, 2 rows) + PhD (2 cols, 1 row) ── */}
             <BentoCard
               title="Dissertation"
               icon={FlaskConical}
-              colSpan={2}
+              colSpan={4}
               rowSpan={2}
               className="relative overflow-hidden"
             >
               <BentoHeadline size="lg" className="z-10">
                 Scalable optimal transport for geometric data
               </BentoHeadline>
-              <div className="h-56 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_75%)]">
+              <div className="h-72 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_75%)]">
                 <Particles
                   particleColors={["#ffffff", "#ffffff", "#d98a2b"]}
                   particleCount={2660}
@@ -283,19 +283,39 @@ function AboutPage() {
               </div>
             </BentoCard>
 
+            <BentoCard aria-label="PhD" colSpan={2} tone="inverted">
+              <BentoHeadline>PhD, Computer Science</BentoHeadline>
+              <BentoBody className="mt-auto">
+                Duke University · 2021 to 2026
+              </BentoBody>
+            </BentoCard>
+
+            {/* ── Row 2: BSc Computer Science (2 cols, 1 row) ── */}
+            <BentoCard
+              aria-label="BSc, Computer Science"
+              colSpan={2}
+              tone="muted"
+            >
+              <BentoHeadline>BSc, Computer Science</BentoHeadline>
+              <BentoBody className="mt-auto">
+                University of Connecticut · 2017 to 2021, Summa Cum Laude
+              </BentoBody>
+            </BentoCard>
+
+            {/* ── Row 3: Talks (2 cols, 3 rows) + Posters (2 cols, 1 row) + BSc Math (2 cols, 1 row) ── */}
             <BentoCard
               aria-label="Talks"
               colSpan={2}
-              rowSpan={2}
+              rowSpan={3}
               tone="accent"
             >
-              <div className="flex items-center justify-between gap-2">
-                <BentoLabel>Talks</BentoLabel>
+              <div className="flex items-baseline justify-between gap-2">
+                <BentoHeadline>Talks</BentoHeadline>
                 <span className="text-xs opacity-75">
                   10 invited &amp; conference
                 </span>
               </div>
-              <ul className="mt-3 flex max-h-72 flex-1 flex-col gap-2.5 overflow-y-auto pr-1">
+              <ul className="mt-3 flex flex-1 flex-col justify-between gap-2.5">
                 {talks.map((talk) => (
                   <li
                     key={`${talk.title}-${talk.venue}`}
@@ -310,51 +330,14 @@ function AboutPage() {
               </ul>
             </BentoCard>
 
-            <BentoCard aria-label="PhD" colSpan={2} tone="inverted">
-              <BentoHeadline>PhD, Computer Science</BentoHeadline>
-              <BentoBody className="mt-auto">
-                Duke University · 2021 to 2026
-              </BentoBody>
-            </BentoCard>
-
-            {/* ── Row 2: Right (BSc CS) ── */}
-            <BentoCard
-              aria-label="BSc, Computer Science"
-              colSpan={2}
-              tone="muted"
-            >
-              <BentoHeadline>BSc, Computer Science</BentoHeadline>
-              <BentoBody className="mt-auto">
-                University of Connecticut · 2017 to 2021, Summa Cum Laude
-              </BentoBody>
-            </BentoCard>
-
-            {/* ── Row 3: Left (Topics), Middle (Posters), Right (BSc Math) ── */}
-            <BentoCard aria-label="Methods" colSpan={2} tone="muted">
-              <BentoHeadline>Topics</BentoHeadline>
-              <div className="mt-auto flex flex-wrap gap-2">
-                {[
-                  "Optimal transport",
-                  "Clustering",
-                  "Computational geometry",
-                  "Boosting",
-                  "Approximation algorithms",
-                ].map((m) => (
-                  <Badge key={m} variant="outline">
-                    {m}
-                  </Badge>
-                ))}
-              </div>
-            </BentoCard>
-
             <BentoCard aria-label="Posters" colSpan={2}>
-              <div className="flex items-center justify-between gap-2">
-                <BentoLabel>Posters</BentoLabel>
+              <div className="flex items-baseline justify-between gap-2">
+                <BentoHeadline>Posters</BentoHeadline>
                 <span className="text-xs text-muted-foreground">
                   3 presented
                 </span>
               </div>
-              <ul className="mt-2.5 flex flex-1 flex-col justify-between gap-2">
+              <ul className="mt-3 flex flex-1 flex-col justify-between gap-2">
                 {posters.map((poster) => (
                   <li
                     key={`${poster.title}-${poster.venue}`}
@@ -378,29 +361,23 @@ function AboutPage() {
               </BentoBody>
             </BentoCard>
 
-            {/* ── Row 4: Left (Tools), Right (Teaching split across 2 schools) ── */}
-            <BentoCard aria-label="Tools" colSpan={2}>
-              <BentoHeadline>Tools</BentoHeadline>
-              <div className="mt-auto flex flex-wrap gap-2">
-                {["Python", "PyTorch"].map((t) => (
-                  <Badge key={t} variant="secondary">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </BentoCard>
-
-            <BentoCard aria-label="Teaching Assistant" colSpan={4} tone="muted">
+            {/* ── Row 4: Teaching Assistant (2 cols, 2 rows) + Topics and Tools (2 cols, 1 row) ── */}
+            <BentoCard
+              aria-label="Teaching Assistant"
+              colSpan={2}
+              rowSpan={2}
+              tone="muted"
+            >
               <div className="flex items-center justify-between gap-2">
                 <BentoHeadline>Teaching Assistant</BentoHeadline>
                 <Badge variant="outline">7 courses</Badge>
               </div>
 
-              <div className="mt-4 grid gap-6 sm:grid-cols-2 sm:divide-x sm:divide-border">
+              <div className="mt-4 flex flex-1 flex-col justify-between gap-4 divide-y divide-border">
                 {teaching.map((group, index) => (
                   <div
                     key={group.institution}
-                    className={cn(index > 0 && "sm:pl-6")}
+                    className={cn(index > 0 && "pt-4")}
                   >
                     <div className="flex items-baseline justify-between gap-2">
                       <p className="font-semibold text-foreground">
@@ -410,7 +387,7 @@ function AboutPage() {
                         {group.count}
                       </span>
                     </div>
-                    <ul className="mt-2.5 space-y-1.5 text-sm">
+                    <ul className="mt-2 space-y-1.5 text-sm">
                       {group.courses.map((course) => (
                         <li
                           key={`${course.name}-${course.term}`}
@@ -430,15 +407,36 @@ function AboutPage() {
               </div>
             </BentoCard>
 
-            {/* ── Row 5: Full-width Links bar ── */}
-            <BentoCard
-              aria-label="Links"
-              colSpan={6}
-              tone="muted"
-              className="flex-row flex-wrap items-center justify-between gap-4"
-            >
+            <BentoCard aria-label="Topics and Tools" colSpan={2}>
+              <BentoHeadline>Topics &amp; Tools</BentoHeadline>
+              <div className="mt-auto space-y-2.5">
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    "Optimal transport",
+                    "Clustering",
+                    "Computational geometry",
+                    "Boosting",
+                    "Approximation algorithms",
+                  ].map((m) => (
+                    <Badge key={m} variant="outline">
+                      {m}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Python", "PyTorch"].map((t) => (
+                    <Badge key={t} variant="secondary">
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </BentoCard>
+
+            {/* ── Row 5: Find me (2 cols, 1 row) ── */}
+            <BentoCard aria-label="Links" colSpan={2} tone="muted">
               <BentoHeadline>Find me elsewhere</BentoHeadline>
-              <ul className="flex flex-wrap gap-2">
+              <ul className="mt-auto flex flex-wrap gap-2">
                 {socials.slice(1).map((social) => (
                   <li key={social.label}>
                     <a
