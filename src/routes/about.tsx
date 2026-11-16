@@ -114,8 +114,80 @@ function Row({
 
 const stats = [
   ["8", "papers published"],
-  ["500", "students mentored"],
+  ["7", "courses assisted"],
   ["12", "public talks hosted"],
+] as const;
+
+const talks = [
+  {
+    title: "Fast Algorithms for Continuous Optimal Transport Between Histograms",
+    venue: "ESA 2026",
+  },
+  {
+    title: "Efficient Algorithms for Optimal Transport in Geometric Settings",
+    venue: "Duke Algorithms Seminar 2026",
+  },
+  {
+    title: "Partial Semi-Discrete Optimal Transport",
+    venue: "Duke/UNC/NC St. Theory Fest 2025",
+  },
+  {
+    title: "Wasserstein Barycenter in Near-Linear Time",
+    venue: "Duke Algorithms Seminar 2024",
+  },
+  {
+    title: "Fast and Accurate Approximations of the Optimal Transport in Discrete and Semi-Discrete Settings",
+    venue: "SODA 2024",
+  },
+  {
+    title: "Approximation Algorithms for Discrete and Semi-Discrete Optimal Transport",
+    venue: "Duke Algorithms Seminar 2023",
+  },
+  {
+    title: "Optimal Completion and Comparison of Incomplete Phylogenetic Trees under Robinson-Foulds Distance",
+    venue: "CPM 2021",
+  },
+  {
+    title: "Robinson-Foulds Distance over Partially Overlapping Phylogenetic Trees",
+    venue: "UConn Bioinformatics 2021",
+  },
+] as const;
+
+const posters = [
+  {
+    title: "Robust and Partial Semi-Discrete Optimal Transport",
+    venue: "NeurIPS 2025",
+  },
+  {
+    title: "A Combinatorial Algorithm for Semi-Discrete Optimal Transport",
+    venue: "NeurIPS 2024",
+  },
+  {
+    title: "Quantum Sampling for Finite Key Rates",
+    venue: "MIT URTC 2020",
+  },
+] as const;
+
+const teaching = [
+  {
+    institution: "Duke University",
+    count: "4 courses",
+    courses: [
+      { name: "Grad Computational Geometry", term: "Fall 2025" },
+      { name: "Grad Computational Geometry", term: "Spring 2024" },
+      { name: "Advanced Grad Algorithms", term: "Fall 2022" },
+      { name: "Discrete Mathematics", term: "Fall 2021" },
+    ],
+  },
+  {
+    institution: "University of Connecticut",
+    count: "3 courses",
+    courses: [
+      { name: "Grad Geometry & Topology I", term: "Fall 2020" },
+      { name: "Discrete Mathematics", term: "Fall 2018" },
+      { name: "Discrete Mathematics", term: "Spring 2018" },
+    ],
+  },
 ] as const;
 
 function AboutPage() {
@@ -132,7 +204,7 @@ function AboutPage() {
           />
           <div className="mx-auto max-w-4xl px-6 pt-24 pb-20 text-center sm:pt-32">
             <h1 className="text-5xl font-bold tracking-tight text-balance sm:text-7xl">
-              I study how points become distributions.
+              Lifting pointwise geometry to dataset geometry.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-balance text-muted-foreground sm:text-xl">
               I'm Keegan, a recent Ph.D. graduate in computer science from Duke
@@ -171,19 +243,18 @@ function AboutPage() {
             The short version
           </h2>
           <BentoGrid>
-            {/* Hero: the one visual centerpiece */}
+            {/* ── Row 1: Left (Dissertation), Middle (Talks), Right (PhD) ── */}
             <BentoCard
               title="Dissertation"
               icon={FlaskConical}
-              colSpan={4}
-              rowSpan={3}
+              colSpan={2}
+              rowSpan={2}
               className="relative overflow-hidden"
             >
               <BentoHeadline size="lg" className="z-10">
-                Scalable, differentiable optimal transport for high-dimensional
-                data
+                Scalable optimal transport for geometric data
               </BentoHeadline>
-              <div className="h-100 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_75%)]">
+              <div className="h-56 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_75%)]">
                 <Particles
                   particleColors={["#ffffff", "#ffffff", "#d98a2b"]}
                   particleCount={2660}
@@ -196,8 +267,7 @@ function AboutPage() {
                   hoverEffect="repel"
                   sizeRandomness={1}
                   shape="circle"
-                  connections
-                  connectionDistance={110}
+                  connections={false}
                   particleHoverFactor={1}
                   hoverRadius={140}
                   drift="none"
@@ -213,48 +283,62 @@ function AboutPage() {
               </div>
             </BentoCard>
 
-            {/* Impact: saturated, with numbers that fill the tile */}
             <BentoCard
-              aria-label="Impact so far"
+              aria-label="Talks"
               colSpan={2}
               rowSpan={2}
               tone="accent"
             >
-              <dl className="flex flex-1 flex-col justify-between gap-4">
-                {stats.map(([n, label]) => (
-                  <div key={label} className="flex items-baseline gap-3">
-                    <dt className="order-2 min-w-0 text-lg leading-snug opacity-80">
-                      {label}
-                    </dt>
-                    <dd className="order-1 text-[clamp(2.5rem,5cqw,4.5rem)] leading-none font-semibold tracking-tight tabular-nums">
-                      {n}
-                    </dd>
-                  </div>
+              <div className="flex items-center justify-between gap-2">
+                <BentoLabel>Talks</BentoLabel>
+                <span className="text-xs opacity-75">
+                  10 invited &amp; conference
+                </span>
+              </div>
+              <ul className="mt-3 flex max-h-72 flex-1 flex-col gap-2.5 overflow-y-auto pr-1">
+                {talks.map((talk) => (
+                  <li
+                    key={`${talk.title}-${talk.venue}`}
+                    className="border-b border-current/15 pb-2 last:border-none last:pb-0"
+                  >
+                    <p className="text-sm leading-snug font-medium">
+                      {talk.title}
+                    </p>
+                    <span className="text-xs opacity-75">{talk.venue}</span>
+                  </li>
                 ))}
-              </dl>
+              </ul>
             </BentoCard>
 
-            {/* Availability */}
+            <BentoCard aria-label="PhD" colSpan={2} tone="inverted">
+              <BentoHeadline>PhD, Computer Science</BentoHeadline>
+              <BentoBody className="mt-auto">
+                Duke University · 2021 to 2026
+              </BentoBody>
+            </BentoCard>
+
+            {/* ── Row 2: Right (BSc CS) ── */}
             <BentoCard
-              aria-label="Location"
-              icon={MapPin}
+              aria-label="BSc, Computer Science"
               colSpan={2}
               tone="muted"
             >
-              <BentoLabel>Based in</BentoLabel>
-              <div className="mt-auto space-y-1">
-                <BentoHeadline size="lg">Burlington, VT</BentoHeadline>
-              </div>
+              <BentoHeadline>BSc, Computer Science</BentoHeadline>
+              <BentoBody className="mt-auto">
+                University of Connecticut · 2017 to 2021, Summa Cum Laude
+              </BentoBody>
             </BentoCard>
 
-            {/* Toolkit, split in two */}
+            {/* ── Row 3: Left (Topics), Middle (Posters), Right (BSc Math) ── */}
             <BentoCard aria-label="Methods" colSpan={2} tone="muted">
-              <BentoHeadline>Methods</BentoHeadline>
+              <BentoHeadline>Topics</BentoHeadline>
               <div className="mt-auto flex flex-wrap gap-2">
                 {[
-                  "Reinforcement learning",
-                  "Bayesian modeling",
-                  "Statistics",
+                  "Optimal transport",
+                  "Clustering",
+                  "Computational geometry",
+                  "Boosting",
+                  "Approximation algorithms",
                 ].map((m) => (
                   <Badge key={m} variant="outline">
                     {m}
@@ -263,6 +347,38 @@ function AboutPage() {
               </div>
             </BentoCard>
 
+            <BentoCard aria-label="Posters" colSpan={2}>
+              <div className="flex items-center justify-between gap-2">
+                <BentoLabel>Posters</BentoLabel>
+                <span className="text-xs text-muted-foreground">
+                  3 presented
+                </span>
+              </div>
+              <ul className="mt-2.5 flex flex-1 flex-col justify-between gap-2">
+                {posters.map((poster) => (
+                  <li
+                    key={`${poster.title}-${poster.venue}`}
+                    className="border-b border-border/60 pb-1.5 last:border-none last:pb-0"
+                  >
+                    <p className="line-clamp-1 text-sm font-medium">
+                      {poster.title}
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      {poster.venue}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </BentoCard>
+
+            <BentoCard aria-label="BSc, Mathematics" colSpan={2}>
+              <BentoHeadline>BSc, Mathematics</BentoHeadline>
+              <BentoBody className="mt-auto">
+                University of Connecticut · 2017 to 2021, Summa Cum Laude
+              </BentoBody>
+            </BentoCard>
+
+            {/* ── Row 4: Left (Tools), Right (Teaching split across 2 schools) ── */}
             <BentoCard aria-label="Tools" colSpan={2}>
               <BentoHeadline>Tools</BentoHeadline>
               <div className="mt-auto flex flex-wrap gap-2">
@@ -274,10 +390,55 @@ function AboutPage() {
               </div>
             </BentoCard>
 
-            {/* Links: icon-only, labelled for assistive tech */}
-            <BentoCard aria-label="Links" colSpan={2} tone="muted">
+            <BentoCard aria-label="Teaching Assistant" colSpan={4} tone="muted">
+              <div className="flex items-center justify-between gap-2">
+                <BentoHeadline>Teaching Assistant</BentoHeadline>
+                <Badge variant="outline">7 courses</Badge>
+              </div>
+
+              <div className="mt-4 grid gap-6 sm:grid-cols-2 sm:divide-x sm:divide-border">
+                {teaching.map((group, index) => (
+                  <div
+                    key={group.institution}
+                    className={cn(index > 0 && "sm:pl-6")}
+                  >
+                    <div className="flex items-baseline justify-between gap-2">
+                      <p className="font-semibold text-foreground">
+                        {group.institution}
+                      </p>
+                      <span className="text-xs text-muted-foreground">
+                        {group.count}
+                      </span>
+                    </div>
+                    <ul className="mt-2.5 space-y-1.5 text-sm">
+                      {group.courses.map((course) => (
+                        <li
+                          key={`${course.name}-${course.term}`}
+                          className="flex items-baseline justify-between gap-3"
+                        >
+                          <span className="text-muted-foreground">
+                            {course.name}
+                          </span>
+                          <span className="shrink-0 text-xs text-muted-foreground/80 tabular-nums">
+                            {course.term}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </BentoCard>
+
+            {/* ── Row 5: Full-width Links bar ── */}
+            <BentoCard
+              aria-label="Links"
+              colSpan={6}
+              tone="muted"
+              className="flex-row flex-wrap items-center justify-between gap-4"
+            >
               <BentoHeadline>Find me elsewhere</BentoHeadline>
-              <ul className="mt-auto flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2">
                 {socials.slice(1).map((social) => (
                   <li key={social.label}>
                     <a
@@ -291,33 +452,6 @@ function AboutPage() {
                   </li>
                 ))}
               </ul>
-            </BentoCard>
-
-            {/* Education: the PhD gets the weight, each BSc gets a small tile */}
-            <BentoCard aria-label="PhD" colSpan={3} rowSpan={2} tone="inverted">
-              <BentoLabel>Education</BentoLabel>
-              <BentoHeadline size="lg">PhD, Computer Science</BentoHeadline>
-              <BentoBody className="mt-auto">
-                Duke University · 2021 to 2026
-              </BentoBody>
-            </BentoCard>
-
-            <BentoCard
-              aria-label="BSc, Computer Science"
-              colSpan={3}
-              tone="muted"
-            >
-              <BentoHeadline>BSc, Computer Science</BentoHeadline>
-              <BentoBody className="mt-auto">
-                University of Connecticut · 2017 to 2021, Summa Cum Laude
-              </BentoBody>
-            </BentoCard>
-
-            <BentoCard aria-label="BSc, Mathematics" colSpan={3}>
-              <BentoHeadline>BSc, Mathematics</BentoHeadline>
-              <BentoBody className="mt-auto">
-                University of Connecticut · 2017 to 2021, Summa Cum Laude
-              </BentoBody>
             </BentoCard>
           </BentoGrid>
         </section>
