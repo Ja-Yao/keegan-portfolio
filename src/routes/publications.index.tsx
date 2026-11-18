@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search } from "lucide-react";
+import { ListFilter, Search, X } from "lucide-react";
 
 import Particles from "@/components/Particles";
 import { PublicationLinks } from "@/components/publication-parts";
@@ -7,23 +7,42 @@ import { useTheme } from "@/components/theme-provider";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { allPublications, matchesQuery, venues } from "@/lib/publications";
+import { cn } from "cn";
 import { useState } from "react";
 
 type PublicationsSearch = {
   q?: string;
-  venue?: string;
+  venue?: string[];
 };
 
 export const Route = createFileRoute("/publications/")({
   // Filters live in the URL so a filtered view can be shared or bookmarked.
-  validateSearch: (search: Record<string, unknown>): PublicationsSearch => ({
-    q: typeof search.q === "string" && search.q ? search.q : undefined,
-    venue:
-      typeof search.venue === "string" && venues.includes(search.venue)
-        ? search.venue
-        : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): PublicationsSearch => {
+    const raw = Array.isArray(search.venue)
+      ? search.venue
+      : typeof search.venue === "string"
+        ? [search.venue]
+        : [];
+    const valid = raw.filter(
+      (v): v is string => typeof v === "string" && venues.includes(v)
+    );
+    return {
+      q: typeof search.q === "string" && search.q ? search.q : undefined,
+      venue: valid.length ? valid : undefined,
+    };
+  },
   head: () => ({
     meta: [
       { title: "Publications" },
@@ -42,13 +61,15 @@ const conferenceStyles =
 const journalStyles = buttonVariants({ variant: "destructive" });
 
 function PublicationsPage() {
-  const { q, venue } = Route.useSearch();
+  const { theme } = useTheme();
+  const { q, venue: selected = [] } = Route.useSearch();
   const navigate = Route.useNavigate();
   const [query, setQuery] = useState(q ?? "");
-  const { theme } = useTheme();
 
   const results = allPublications.filter(
-    (p) => (!venue || p.conference === venue) && matchesQuery(p, query)
+    (p) =>
+      (selected.length === 0 || selected.includes(p.conference)) &&
+      matchesQuery(p, query)
   );
 
   const byYear = (() => {
@@ -59,7 +80,7 @@ function PublicationsPage() {
     return [...groups.entries()];
   })();
 
-  const hasFilters = Boolean(query || venue);
+  const hasFilters = Boolean(query || selected.length);
 
   function updateQuery(value: string) {
     setQuery(value);
@@ -69,8 +90,15 @@ function PublicationsPage() {
     });
   }
 
-  function updateVenue(next: string | undefined) {
-    navigate({ search: (prev) => ({ ...prev, venue: next }), replace: true });
+  function updateVenues(next: string[]) {
+    navigate({
+      search: (prev) => ({ ...prev, venue: next.length ? next : undefined }),
+      replace: true,
+    });
+  }
+
+  function toggleVenue(v: string, checked: boolean) {
+    updateVenues(checked ? [...selected, v] : selected.filter((x) => x !== v));
   }
 
   function clearFilters() {
@@ -80,8 +108,32 @@ function PublicationsPage() {
 
   return (
     <div className="mx-auto w-full max-w-384 px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-      <div className="flex flex-row justify-between align-middle">
-        <div className="max-w-2xl">
+      <div className="relative isolate h-100 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full w-full mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent),linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] mask-intersect">
+          <Particles
+            particleColors={["#fff", "#839156", "#c86d2d"]}
+            particleCount={2660}
+            particleSpread={12}
+            speed={0.025}
+            particleBaseSize={100}
+            glow={0.4}
+            twinkle={0.2}
+            moveParticlesOnHover={false}
+            sizeRandomness={1.5}
+            shape="circle"
+            drift="none"
+            driftSpeed={1}
+            alphaParticles
+            cameraDistance={20}
+            disableRotation
+            variation={6}
+            opacity={1}
+            clickBurst={false}
+            intro
+            lightMode={theme === "light"}
+          />
+        </div>
+        <div className="relative max-w-2xl rounded-[min(var(--radius-4xl),24px)] border border-border p-6 backdrop-blur-md">
           <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
             Publications
           </h1>
@@ -91,38 +143,10 @@ function PublicationsPage() {
             learning.
           </p>
         </div>
-        <div className="hidden h-100 w-full rounded-full mask-[radial-gradient(ellipse_at_center,black_45%,transparent_80%)] md:block">
-          <Particles
-            particleColors={["#ffffff", "#ffffff", "#d98a2b"]}
-            particleCount={2660}
-            particleSpread={12}
-            speed={0.025}
-            particleBaseSize={100}
-            glow={0.4}
-            twinkle={0.2}
-            moveParticlesOnHover={false}
-            hoverEffect="repel"
-            sizeRandomness={1}
-            shape="circle"
-            connections={false}
-            particleHoverFactor={1}
-            hoverRadius={140}
-            drift="none"
-            driftSpeed={1}
-            alphaParticles
-            cameraDistance={20}
-            variation={6}
-            opacity={1}
-            clickBurst={false}
-            intro={false}
-            lightMode={theme === "light"}
-          />
-        </div>
       </div>
-
-      <div className="mt-10 flex flex-col gap-4 border-b pb-6 md:mt-14">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
-          <div className="relative lg:w-80 lg:shrink-0">
+      <div className="mt-10 flex flex-col gap-4 border-b pb-6">
+        <div className="flex items-center gap-3">
+          <div className="relative min-w-0 flex-1 lg:max-w-xl">
             <Search
               aria-hidden="true"
               className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
@@ -133,44 +157,70 @@ function PublicationsPage() {
               onChange={(e) => updateQuery(e.target.value)}
               placeholder="Search titles, authors, and abstracts"
               aria-label="Search publications"
-              className="h-11 pl-9 text-base md:w-lg md:text-sm"
+              className="h-11 w-full pl-9 text-base md:text-sm"
             />
           </div>
 
-          <div
-            role="group"
-            aria-label="Filter by venue"
-            className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 lg:justify-end"
-          >
-            <Button
-              size="lg"
-              variant={!venue ? "default" : "outline"}
-              aria-pressed={!venue}
-              onClick={() => updateVenue(undefined)}
-              className="shrink-0 rounded-full"
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn(
+                buttonVariants({
+                  variant: selected.length ? "default" : "outline",
+                  size: "lg",
+                }),
+                "h-11 shrink-0 rounded-full"
+              )}
             >
-              All venues
-            </Button>
-            {venues.map((v) => (
-              <Button
-                key={v}
-                size="lg"
-                variant={venue === v ? "default" : "outline"}
-                aria-pressed={venue === v}
-                onClick={() => updateVenue(venue === v ? undefined : v)}
-                className="shrink-0 rounded-full"
+              <ListFilter aria-hidden="true" />
+              Filters
+              {selected.length > 0 && (
+                <span className="tabular-nums">({selected.length})</span>
+              )}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Venue</DropdownMenuLabel>
+                {venues.map((v) => (
+                  <DropdownMenuCheckboxItem
+                    key={v}
+                    checked={selected.includes(v)}
+                    onCheckedChange={(checked) => toggleVenue(v, checked)}
+                  >
+                    {v}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                disabled={selected.length === 0}
+                onClick={() => updateVenues([])}
               >
-                {v}
-              </Button>
-            ))}
-          </div>
+                Clear venues
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <div className="flex min-h-8 items-center justify-between text-sm text-muted-foreground">
-          <p role="status" aria-live="polite">
-            {results.length}{" "}
-            {results.length === 1 ? "publication" : "publications"}
-          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p role="status" aria-live="polite" className="mr-1">
+              {results.length}{" "}
+              {results.length === 1 ? "publication" : "publications"}
+            </p>
+            {selected.map((v) => (
+              <Button
+                key={v}
+                variant="secondary"
+                size="sm"
+                aria-label={`Remove ${v} filter`}
+                onClick={() => toggleVenue(v, false)}
+                className="rounded-full"
+              >
+                {v}
+                <X aria-hidden="true" />
+              </Button>
+            ))}
+          </div>
           {hasFilters && (
             <Button variant="ghost" size="lg" onClick={clearFilters}>
               Clear filters
@@ -178,7 +228,6 @@ function PublicationsPage() {
           )}
         </div>
       </div>
-
       {results.length === 0 ? (
         <div className="py-20 text-center">
           <h2 className="text-2xl">No publications found</h2>

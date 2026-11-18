@@ -89,7 +89,7 @@ function PublicationPage() {
         >
           {p.conference} {p.year}
         </Badge>
-        <h1 className="mt-4 text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl md:text-7xl">
+        <h1 className="mt-4 font-serif text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl md:text-7xl">
           {p.title}
         </h1>
         <p className="mt-4">
@@ -129,7 +129,7 @@ function PublicationPage() {
           <h2 id="abstract-heading" className="text-lg font-semibold">
             Abstract
           </h2>
-          <div className="mt-3 max-w-[65ch] space-y-4 text-lg leading-8">
+          <div className="typeset mt-3 max-w-[65ch] text-[1.125rem]">
             {p.abstract.split("\n\n").map((para, i) => (
               <p key={i}>{para}</p>
             ))}

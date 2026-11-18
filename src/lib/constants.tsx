@@ -43,3 +43,79 @@ export const socials = [
     ),
   },
 ] as const;
+
+export const talks = [
+  {
+    title:
+      "Fast Algorithms for Continuous Optimal Transport Between Histograms",
+    venue: "ESA 2026",
+  },
+  {
+    title: "Efficient Algorithms for Optimal Transport in Geometric Settings",
+    venue: "Duke Algorithms Seminar 2026",
+  },
+  {
+    title: "Partial Semi-Discrete Optimal Transport",
+    venue: "Duke/UNC/NC St. Theory Fest 2025",
+  },
+  {
+    title: "Wasserstein Barycenter in Near-Linear Time",
+    venue: "Duke Algorithms Seminar 2024",
+  },
+  {
+    title:
+      "Fast and Accurate Approximations of the Optimal Transport in Discrete and Semi-Discrete Settings",
+    venue: "SODA 2024",
+  },
+  {
+    title:
+      "Approximation Algorithms for Discrete and Semi-Discrete Optimal Transport",
+    venue: "Duke Algorithms Seminar 2023",
+  },
+  {
+    title:
+      "Optimal Completion and Comparison of Incomplete Phylogenetic Trees under Robinson-Foulds Distance",
+    venue: "CPM 2021",
+  },
+  {
+    title:
+      "Robinson-Foulds Distance over Partially Overlapping Phylogenetic Trees",
+    venue: "UConn Bioinformatics 2021",
+  },
+] as const;
+
+export const posters = [
+  {
+    title: "Robust and Partial Semi-Discrete Optimal Transport",
+    venue: "NeurIPS 2025",
+  },
+  {
+    title: "A Combinatorial Algorithm for Semi-Discrete Optimal Transport",
+    venue: "NeurIPS 2024",
+  },
+  {
+    title: "Quantum Sampling for Finite Key Rates",
+    venue: "MIT URTC 2020",
+  },
+] as const;
+
+export const teaching = [
+  {
+    institution: "Duke University",
+    courses: [
+      {
+        name: "Grad Computational Geometry",
+        term: ["Spring 2024", "Fall 2025"],
+      },
+      { name: "Advanced Grad Algorithms", term: "Fall 2022" },
+      { name: "Discrete Mathematics", term: "Fall 2021" },
+    ],
+  },
+  {
+    institution: "University of Connecticut",
+    courses: [
+      { name: "Grad Geometry & Topology I", term: "Fall 2020" },
+      { name: "Discrete Mathematics", term: ["Spring 2018", "Fall 2018"] },
+    ],
+  },
+] as const;

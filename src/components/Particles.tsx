@@ -329,6 +329,7 @@ const link = (
   const vertex = compile(gl, gl.VERTEX_SHADER, vertexSource);
   const fragment = compile(gl, gl.FRAGMENT_SHADER, fragmentSource);
   const program = gl.createProgram();
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!vertex || !fragment || !program) return null;
   gl.attachShader(program, vertex);
   gl.attachShader(program, fragment);
@@ -509,7 +510,7 @@ const Particles = ({
       .createElement("canvas")
       .getContext("2d", { willReadFrequently: true });
     const reduce =
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
     const cache = new Map<string, number[]>();
     const parse = (value: string): number[] => {
       const cached = cache.get(value);

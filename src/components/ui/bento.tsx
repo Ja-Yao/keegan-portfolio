@@ -30,9 +30,12 @@ const tones = {
   /** Filled, no ring. Alternate with default to create rhythm. */
   muted: "bg-muted text-foreground",
   /** Strong contrast. Use once, for the card that should be read first. */
-  inverted: "bg-foreground text-background",
+  inverted: "bg-muted-foreground text-background",
   /** Brand color. */
   accent: "bg-accent text-accent-foreground",
+  /** Pastel brand color */
+  pastel:
+    "bg-[color-mix(in_oklab,var(--primary)_10%,var(--card))] text-[color-mix(in_oklab,var(--primary)_30%,var(--foreground))]",
 } as const;
 
 type BentoTone = keyof typeof tones;

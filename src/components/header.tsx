@@ -81,11 +81,7 @@ export function Header() {
                 />
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  onClick={() => navigate({ to: "/publications" })}
-                >
-                  Publications
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger>Publications</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div>
                     <ul className="grid w-72 gap-2 md:w-md md:grid-cols-2 lg:w-150">
