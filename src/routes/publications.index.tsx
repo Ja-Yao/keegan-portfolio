@@ -268,6 +268,22 @@ function PublicationsPage() {
                           {p.title}
                         </Link>
                       </h3>
+                      {p.authors?.length > 0 && (
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {p.authors.map((author, index) => (
+                            <span key={author}>
+                              {index > 0 && ", "}
+                              <span
+                                className={
+                                  author === "Keegan Yao" ? "font-medium text-foreground" : undefined
+                                }
+                              >
+                                {author}
+                              </span>
+                            </span>
+                          ))}
+                        </p>
+                      )}
                       <p className="mt-2 line-clamp-2 max-w-[68ch] text-muted-foreground">
                         {p.description}
                       </p>
