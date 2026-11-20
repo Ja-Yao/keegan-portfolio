@@ -28,6 +28,10 @@ const navLinks = [
   { label: "About", to: "/about" },
 ] as const;
 
+const featuredPublications = publications
+  .filter((item) => item.featuredOrder !== undefined)
+  .sort((a, b) => a.featuredOrder! - b.featuredOrder!);
+
 export function Header() {
   const navigate = useNavigate();
 
@@ -85,7 +89,7 @@ export function Header() {
                 <NavigationMenuContent>
                   <div>
                     <ul className="grid w-72 gap-2 md:w-md md:grid-cols-2 lg:w-150">
-                      {publications.slice(0, 4).map((item) => (
+                      {featuredPublications.map((item) => (
                         <NavigationMenuListItem
                           key={item.id}
                           href={`/publications/${item.id}`}
