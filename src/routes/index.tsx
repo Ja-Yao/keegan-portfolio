@@ -15,7 +15,9 @@ import { BookOpen, Mail } from "lucide-react";
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
-  const featured = publications.slice(0, 4);
+  const featured = publications
+    .filter((item) => item.featuredOrder !== undefined)
+    .sort((a, b) => a.featuredOrder! - b.featuredOrder!);
 
   return (
     <main className="mx-auto h-fit w-full max-w-350 px-4 pt-4 pb-16 sm:px-6 sm:py-6 2xl:max-w-[1760px]">
