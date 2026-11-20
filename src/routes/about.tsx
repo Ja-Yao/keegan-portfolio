@@ -247,7 +247,7 @@ function AboutPage() {
               <div className="flex flex-wrap items-baseline justify-between gap-x-2">
                 <BentoHeadline>Talks</BentoHeadline>
                 <span className="text-xs whitespace-nowrap opacity-75">
-                  10 invited &amp; conference
+                  8 invited &amp; conference
                 </span>
               </div>
               <ul className="mt-3 flex flex-1 flex-col justify-between gap-2.5">
