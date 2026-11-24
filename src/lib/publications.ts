@@ -45,7 +45,16 @@ const raw: Publication[] = [
     description:
       "First nearly-quadratic upper and lower bounds for (1+\u03B5)-approximate optimal transport between axis-aligned histograms.",
     abstract:
-      "We give the first (relative) (1+ε)-approximation algorithm for the continuous optimal transport (OT) problem between two axis-aligned histograms in the plane, each of which is represented as a piecewise-constant function over a rectangular subdivision. Our algorithm runs in nearly quadratic time in the complexity of the histograms in the worst case. In contrast to the discrete and semi-discrete optimal transport problems, which always admit linear-size OT plans, we demonstrate that there is a quadratic lower bound on the complexity of even a (1+ε)-approximate OT plan in the continuous setting in the worst case. This suggests that the runtime of our approximation algorithm nearly matches the worst-case lower-bound complexity of an explicit (1+ε)-approximate OT plan between two histograms. We additionally provide near-linear time algorithms with either weaker approximation guarantees or restrictions on the input histograms.",
+      `We give the first (relative) $(1+\\varepsilon)$-approximation algorithm for the continuous optimal transport (OT) problem between two axis-aligned histograms in the plane, each of which is represented as a piecewise-constant function over a rectangular subdivision.
+      
+      Our algorithm runs in nearly quadratic time in the complexity of the histograms in the worst case.
+      
+      In contrast to the discrete and semi-discrete optimal transport problems, which always admit linear-size OT plans, we demonstrate that there is a quadratic lower bound on the complexity of even a $(1+\\varepsilon)$-approximate OT plan in the continuous setting in the worst case.
+      
+      This suggests that the runtime of our approximation algorithm nearly matches the worst-case lower-bound complexity of an explicit $(1+\\varepsilon)$-approximate OT plan between two histograms.
+      
+      We additionally provide near-linear time algorithms with either weaker approximation guarantees or restrictions on the input histograms.
+      `,
     bibtex: "",
     tags: [],
     links: [
@@ -67,7 +76,16 @@ const raw: Publication[] = [
     description:
       "Metric embeddings for constant approximate optimal transport and bottleneck distance in finite metric spaces.",
     abstract:
-      "Let (X,d) be a metric space and let μ, ν be discrete probability distributions supported on finite point sets A, B ⊆X. For any p ∈[1,∞], the Wp-distance between μ and ν, Wp(μ, ν), is defined as the p-th root of the minimum cost of transporting all the probability mass from μ to ν, where moving a probability mass of δ from a ∈A to b ∈B incurs a cost of δd(a, b)p. We give a (Las Vegas) randomized algorithm that computes a (4+ε)-approximate Wp optimal-transport (OT) plan in O(n2 + (n3/2ε-1 log(n) logΔ)1+o(1) logU) time with probability at least 1-1/n, for all p ∈[1,∞], where ε> 0 is an arbitrarily small constant and ∆is the ratio between the largest and smallest interpoint distances in A ∪B. The previous best result achieved an O(log(n))-approximation in O(pn2) time, for constant values of p. Our algorithm significantly improves the approximation factor and, importantly, is the first quadratic-time method that extends to the W∞-distance. In contrast, additive approximation methods such as Sinkhorn are efficient only for constant p and fail to handle p=∞. Our algorithm also extends to a query model where, for any integer k > 1, we give an algorithm that preprocesses X into clusters in O(n2+kn1+1/k log(n) log Δ) time, after which a O(k)-approximate Wp distance between any two distributions μ and ν with X as support can be computed in O(n1+1/k log(n) log Δ)1+o(1) time with probability at most 1-1/n. Finally, for p=∞, we show that obtaining a relative approximation factor better than 2 in O(n2) time would resolve the long-standing open problem of computing a perfect matching in an arbitrary bipartite graph in quadratic time.",
+      `Let $(X,d)$ be a metric space and let $\\mu, \\nu$ be discrete probability distributions supported on finite point sets $A, B \\subseteq X$. For any $p \\in [1,\\infty]$, the $W_p$-distance between $\\mu$ and $\\nu$, $W_p(\\mu, \\nu)$, is defined as the $p$-th root of the minimum cost of transporting all the probability mass from $\\mu$ to $\\nu$, where moving a probability mass of $\\delta$ from $a \\in A$ to $b \\in B$ incurs a cost of $\\delta d(a, b)^p$.
+      
+      We give a (Las Vegas) randomized algorithm that computes a $(4+\\varepsilon)$-approximate $W_p$ optimal-transport (OT) plan in $O(n^2 + (n^{3/2}\\varepsilon^{-1}\\log(n)\\log\\Delta)^{1+o(1)}\\log U)$ time with probability at least $1-1/n$, for all $p \\in [1,\\infty]$, where $\\varepsilon > 0$ is an arbitrarily small constant and $\\Delta$ is the ratio between the largest and smallest interpoint distances in $A \\cup B$.
+      
+      The previous best result achieved an $O(\\log(n))$-approximation in $O(pn^2)$ time, for constant values of $p$. Our algorithm significantly improves the approximation factor and, importantly, is the first quadratic-time method that extends to the $W_{\\infty}$-distance. In contrast, additive approximation methods such as Sinkhorn are efficient only for constant $p$ and fail to handle $p = \\infty$.
+      
+      Our algorithm also extends to a query model where, for any integer $k > 1$, we give an algorithm that preprocesses $X$ into clusters in $O(n^2+kn^{1+1/k}\\log(n)\\log\\Delta)$ time, after which a $O(k)$-approximate $W_p$ distance between any two distributions $\\mu$ and $\\nu$ with $X$ as support can be computed in $O((n^{1+1/k}\\log(n)\\log\\Delta)^{1+o(1)})$ time with probability at least $1-1/n$.
+      
+      Finally, for $p = \\infty$, we show that obtaining a relative approximation factor better than 2 in $O(n^2)$ time would resolve the long-standing open problem of computing a perfect matching in an arbitrary bipartite graph in quadratic time.
+      `,
     tags: [],
     links: ["https://iclr.cc/virtual/2026/poster/10009496"],
   },
@@ -84,7 +102,16 @@ const raw: Publication[] = [
     description:
       "Fast algorithms for noise-resilient and partial optimal transport.",
     abstract:
-      "The sensitivity of optimal transport (OT) to noise has motivated the study of robust variants. In this paper, we study two such formulations of semi-discrete OT in ℝd: (i) the α-optimal partial transport, which minimizes the cost of transporting a mass of α, and (ii) the λ-robust optimal transport, which regularizes the OT problem using the total variation (TV) distance. First, we provide a novel characterization of the optimal solutions in these settings, showing they can be represented as a restricted Laguerre diagram. Second, we exploit this characterization to establish a strong algorithmic connection between the two problems, showing that any solver for one can be adapted to solve the other with comparable precision. Third, we overcome key challenges posed in extending the cost-scaling paradigm to compute these variants of OT and present an algorithm that computes the exact solution up to log(1/ε) bits of precision in nO(d)log(1/ε) time, where n is the support size of the discrete distribution. Finally, we present an n1+o(1)ε-O(d) time approximation algorithm for the above variants of OT",
+      `The sensitivity of optimal transport (OT) to noise has motivated the study of robust variants. In this paper, we study two such formulations of semi-discrete OT in $\\mathbb{R}^d$: (i) the $\\alpha$-optimal partial transport, which minimizes the cost of transporting a mass of $\\alpha$, and (ii) the $\\lambda$-robust optimal transport, which regularizes the OT problem using the total variation (TV) distance.
+      
+      First, we provide a novel characterization of the optimal solutions in these settings, showing they can be represented as a restricted Laguerre diagram.
+      
+      Second, we exploit this characterization to establish a strong algorithmic connection between the two problems, showing that any solver for one can be adapted to solve the other with comparable precision.
+      
+      Third, we overcome key challenges posed in extending the cost-scaling paradigm to compute these variants of OT and present an algorithm that computes the exact solution up to $\\log(1/\\varepsilon)$ bits of precision in $n^{O(d)} \\log(1/\\varepsilon)$ time, where $n$ is the support size of the discrete distribution.
+      
+      Finally, we present an $n^{1+o(1)}\\varepsilon^{-O(d)}$-time approximation algorithm for the above variants of OT.
+      `,
     tags: [],
     links: ["https://www.proceedings.com/085713-1469.html"],
     featuredOrder: 2
@@ -102,7 +129,12 @@ const raw: Publication[] = [
     description:
       "First near-linear time (1+\u03B5)-approximation algorithm for the 'average' of multiple distributions.",
     abstract:
-      "Given a set of probability distributions, the Wasserstein barycenter problem asks to compute a distribution that minimizes the average Wasserstein distance, or optimal transport cost, from all the input distributions. Wasserstein barycenters preserve common geometric features of the input distributions, making them useful in machine learning and data analytics tasks.\n\n We present a near-linear time algorithm that computes the Wasserstein barycenter within a relative (1+ε)-approximation in fixed dimensions. We are not aware of an efficient relative-approximation algorithm for this problem even in two dimensions. To obtain our results, we first present a near-linear-time dynamic-programming-based primal-dual algorithm to compute an optimal Wasserstein barycenter under a tree metric. We then combine our tree-based algorithms with the boosting framework to obtain a (1+ε)-approximation in near-linear time.",
+      `Given a set of probability distributions, the Wasserstein barycenter problem asks to compute a distribution that minimizes the average Wasserstein distance, or optimal transport cost, from all the input distributions. Wasserstein barycenters preserve common geometric features of the input distributions, making them useful in machine learning and data analytics tasks.
+      
+      We present a near-linear time algorithm that computes the Wasserstein barycenter within a relative $(1+\\varepsilon)$-approximation in fixed dimensions. We are not aware of an efficient relative-approximation algorithm for this problem even in two dimensions.
+      
+      To obtain our results, we first present a near-linear-time dynamic-programming-based primal-dual algorithm to compute an optimal Wasserstein barycenter under a tree metric. We then combine our tree-based algorithms with the boosting framework to obtain a $(1+\\varepsilon)$-approximation in near-linear time.
+      `,
     tags: [],
     links: ["https://epubs.siam.org/doi/10.1137/1.9781611978322.163"],
     featuredOrder: 1
@@ -119,8 +151,21 @@ const raw: Publication[] = [
     pages: "pp. 25857–25887",
     description:
       "Improved approximation algorithm for semi-discrete optimal transport in the Euclidean plane.",
-    abstract:
-      "We give the first (relative) (1+ε)-approximation algorithm for the continuous optimal transport (OT) problem between two axis-aligned histograms in the plane, each of which is represented as a piecewise-constant function over a rectangular subdivision. Our algorithm runs in nearly quadratic time in the complexity of the histograms in the worst case. In contrast to the discrete and semi-discrete optimal transport problems, which always admit linear-size OT plans, we demonstrate that there is a quadratic lower bound on the complexity of even a (1+ε)-approximate OT plan in the continuous setting in the worst case. This suggests that the runtime of our approximation algorithm nearly matches the worst-case lower-bound complexity of an explicit (1+ε)-approximate OT plan between two histograms. We additionally provide near-linear time algorithms with either weaker approximation guarantees or restrictions on the input histograms.",
+    abstract: 
+        `Optimal Transport (OT, also known as the Wasserstein distance) is a popular metric for comparing probability distributions and has been successfully used in many machine-learning applications.
+        
+        In the semi-discrete $2$-Wasserstein problem, we wish to compute the cheapest way to transport all the mass from a continuous distribution $\\mu$ to a discrete distribution $\\nu$ in $\\mathbb{R}^d$ for $d \\geq 1$, where the cost of transporting unit mass between points $a$ and $b$ is $d(a,b) = \\|a-b\\|^2$.
+        
+        When both distributions are discrete, a simple combinatorial framework has been used to find the exact solution (see e.g. [Orlin, STOC 1988]). In this paper, we propose a combinatorial framework for the semi-discrete OT, which can be viewed as an extension of the combinatorial framework for the discrete OT but requires several new ideas.
+        
+        We present a new algorithm that, given $\\mu$ and $\\nu$ in $\\mathbb{R}^2$ and a parameter $\\varepsilon > 0$, computes an $\\varepsilon$-additive approximate semi-discrete transport plan in $O(n^4 \\log n \\log \\frac{1}{\\varepsilon})$ time (in the worst case), where $n$ is the support size of the discrete distribution $\\nu$ and we assume that the mass of $\\mu$ inside a triangle can be computed in $O(1)$ time.
+        
+        Our algorithm is significantly faster than the known algorithms, and unlike many numerical algorithms, it does not make any assumptions on the smoothness of $\\mu$.
+        
+        As an application of our algorithm, we describe a data structure to store a large discrete distribution $\\mu$ (with support size $N$) using $O(N)$ space so that, given a query discrete distribution $\\nu$ (with support size $k$), an $\\varepsilon$-additive approximate transport plan can be computed in $O(k^3 \\sqrt{N} \\log \\frac{1}{\\varepsilon})$ time in $2$ dimensions.
+        
+        Our algorithm and data structure extend to higher dimensions as well as to the $p$-Wasserstein problem for any $p \\geq 1$.
+        `,
     bibtex: "",
     tags: [],
     links: ["https://www.proceedings.com/079017-0812.html"],
@@ -137,8 +182,33 @@ const raw: Publication[] = [
     pages: "pp. 52080–52100",
     description:
       "First \u03B5-approximation algorithms for semi-discrete optimal transport achieving either log\u03B5 dependence, or near-linear dependence in n, plus an improved discrete OT algorithm.",
-    abstract:
-      "Let (X,d) be a metric space and let μ, ν be discrete probability distributions supported on finite point sets A, B ⊆X. For any p ∈[1,∞], the Wp-distance between μ and ν, Wp(μ, ν), is defined as the p-th root of the minimum cost of transporting all the probability mass from μ to ν, where moving a probability mass of δ from a ∈A to b ∈B incurs a cost of δd(a, b)p. We give a (Las Vegas) randomized algorithm that computes a (4+ε)-approximate Wp optimal-transport (OT) plan in O(n2 + (n3/2ε-1 log(n) logΔ)1+o(1) logU) time with probability at least 1-1/n, for all p ∈[1,∞], where ε> 0 is an arbitrarily small constant and ∆is the ratio between the largest and smallest interpoint distances in A ∪B. The previous best result achieved an O(log(n))-approximation in O(pn2) time, for constant values of p. Our algorithm significantly improves the approximation factor and, importantly, is the first quadratic-time method that extends to the W∞-distance. In contrast, additive approximation methods such as Sinkhorn are efficient only for constant p and fail to handle p=∞. Our algorithm also extends to a query model where, for any integer k > 1, we give an algorithm that preprocesses X into clusters in O(n2+kn1+1/k log(n) log Δ) time, after which a O(k)-approximate Wp distance between any two distributions μ and ν with X as support can be computed in O(n1+1/k log(n) log Δ)1+o(1) time with probability at most 1-1/n. Finally, for p=∞, we show that obtaining a relative approximation factor better than 2 in O(n2) time would resolve the long-standing open problem of computing a perfect matching in an arbitrary bipartite graph in quadratic time.",
+    abstract: `
+      Given a $d$-dimensional continuous (resp. discrete) probability distribution $\\mu$ and a discrete distribution $\\nu$, the semi-discrete (resp. discrete) optimal transport (OT) problem asks for computing a minimum-cost plan to transport mass from $\\mu$ to $\\nu$. We assume $n$ to be the number of points in the support of the discrete distributions. In this paper, we present three approximation algorithms for the OT problem with strong provable guarantees.
+      
+      **(i) Additive approximation for semi-discrete OT:** For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
+      
+      $$
+      \\text{\\textcent}(\\tilde{\\tau}) \\leq \\text{\\textcent}(\\tau^*) + \\varepsilon
+      $$
+      
+      in $n^{O(d)} \\log \\frac{\\mathrm{D}}{\\varepsilon}$ time. Here, $\\tau^*$ is the optimal transport plan, $\\mathrm{D}$ is the diameter of the supports of $\\mu$ and $\\nu$, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside a constant-complexity region in $O(1)$ time. Our algorithm works for several ground distances, including the $L_p$-norm and the squared-Euclidean distance.
+      
+      **(ii) Relative approximation for semi-discrete OT:** For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
+      
+      $$
+      \\text{\\textcent}(\\tilde{\\tau}) \\leq (1+\\varepsilon)\\text{\\textcent}(\\tau^*)
+      $$
+      
+      in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ expected time. Here, $\\tau^*$ is the optimal transport plan, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside an orthogonal box in $O(1)$ time. The ground distance is any $L_p$-norm.
+      
+      **(iii) Relative approximation for discrete OT:** For any parameter $\\varepsilon > 0$, we present a Monte Carlo algorithm that computes a transport plan $\\tilde{\\tau}$ with expected cost
+      
+      $$
+      \\text{\\textcent}(\\tilde{\\tau}) \\leq (1+\\varepsilon)\\text{\\textcent}(\\tau^*)
+      $$
+      
+      under any $L_p$-norm in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ time. Here, $\\tau^*$ is an optimal transport plan, and we assume that the spread of the supports of $\\mu$ and $\\nu$ is polynomially bounded.
+      `,
     tags: [],
     links: ["https://epubs.siam.org/doi/10.1137/1.9781611977912.159"],
     featuredOrder: 4
@@ -156,7 +226,7 @@ const raw: Publication[] = [
     description:
       "Strengthening entropic uncertainty relations via quantum sampling, with applications in quantum cryptography.",
     abstract:
-      "The sensitivity of optimal transport (OT) to noise has motivated the study of robust variants. In this paper, we study two such formulations of semi-discrete OT in ℝd: (i) the α-optimal partial transport, which minimizes the cost of transporting a mass of α, and (ii) the λ-robust optimal transport, which regularizes the OT problem using the total variation (TV) distance. First, we provide a novel characterization of the optimal solutions in these settings, showing they can be represented as a restricted Laguerre diagram. Second, we exploit this characterization to establish a strong algorithmic connection between the two problems, showing that any solver for one can be adapted to solve the other with comparable precision. Third, we overcome key challenges posed in extending the cost-scaling paradigm to compute these variants of OT and present an algorithm that computes the exact solution up to log(1/ε) bits of precision in nO(d)log(1/ε) time, where n is the support size of the discrete distribution. Finally, we present an n1+o(1)ε-O(d) time approximation algorithm for the above variants of OT",
+      `It has been shown recently that the framework of quantum sampling, as introduced by Bouman and Fehr, can lead to new entropic uncertainty relations highly applicable to finite-key cryptographic analyses. Here we revisit these so-called sampling-based entropic uncertainty relations, deriving newer, more powerful, relations and applying them to source-independent quantum random number generators and high-dimensional quantum key distribution protocols.  Along the way, we prove several interesting results in the asymptotic case for our entropic uncertainty relations. These sampling-based approaches to entropic uncertainty, and their application to quantum cryptography, hold great potential for deriving proofs of security for quantum cryptographic systems, and the approaches we use here may be applicable to an even wider range of scenarios.`,
     tags: [],
     links: ["https://ieeexplore.ieee.org/document/9676613"],
   },
@@ -173,7 +243,18 @@ const raw: Publication[] = [
     description:
       "Efficiently computing the completion of two trees with minimum Robinson-Foulds distance, and a near-linear time 2-approximation.",
     abstract:
-      "Given a set of probability distributions, the Wasserstein barycenter problem asks to compute a distribution that minimizes the average Wasserstein distance, or optimal transport cost, from all the input distributions. Wasserstein barycenters preserve common geometric features of the input distributions, making them useful in machine learning and data analytics tasks.\n\n We present a near-linear time algorithm that computes the Wasserstein barycenter within a relative (1+ε)-approximation in fixed dimensions. We are not aware of an efficient relative-approximation algorithm for this problem even in two dimensions. To obtain our results, we first present a near-linear-time dynamic-programming-based primal-dual algorithm to compute an optimal Wasserstein barycenter under a tree metric. We then combine our tree-based algorithms with the boosting framework to obtain a (1+ε)-approximation in near-linear time.",
+      `The comparison of phylogenetic trees is a fundamental task in phylogenetics and evolutionary biology. In many cases, these comparisons involve trees inferred on the same set of leaves, and many distance measures exist to facilitate such comparisons. However, several applications in phylogenetics require the comparison of trees that have non-identical leaf sets.
+      
+      The traditional approach for handling such comparisons is to first restrict the two trees being compared to just their common leaf set. An alternative, conceptually superior approach that has shown promise is to first **complete** the trees by adding missing leaves so that the completed trees have identical leaf sets.
+      
+      This alternative approach requires the computation of optimal completions of the two trees that minimize the distance between them. However, no polynomial-time algorithms currently exist for this optimal completion problem under any standard phylogenetic distance measure.
+      
+      In this work, we provide the first polynomial-time algorithms for the above problem under the widely used Robinson-Foulds (RF) distance measure. This hitherto unsolved problem is referred to as the **RF(+) problem**.
+      
+      We (i) show that a recently proposed linear-time algorithm for a restricted version of the RF(+) problem is a 2-approximation for the RF(+) problem, and (ii) provide an exact $O(nk^2)$-time algorithm for the RF(+) problem, where $n$ is the total number of distinct leaf labels in the two trees being compared and $k$, bounded above by $n$, depends on the topologies and leaf set overlap of the two trees.
+      
+      Our results hold for both rooted and unrooted binary trees.
+      `,
     tags: [],
     links: [
       "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CPM.2021.25",
