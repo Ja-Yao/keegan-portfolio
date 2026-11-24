@@ -25,6 +25,9 @@ import {
   getPublication,
 } from "@/lib/publications";
 
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
+
 export const Route = createFileRoute("/publications/$publicationId")({
   loader: ({ params }) => {
     const publication = getPublication(params.publicationId);
@@ -48,6 +51,32 @@ const conferenceStyles =
   "bg-(--venue-conference-soft) text-(--venue-conference-soft-foreground) text-md" as const;
 const journalStyles =
   "bg-(--venue-conference-soft) text-(--venue-conference-soft-foreground) text-md" as const;
+
+function Abstract({ content }: { content: string }) {
+  return (
+    <div className="typeset mt-3 max-w-[65ch] text-[1.125rem]">
+      {content.split("\n\n").map((para, i) => (
+        <p key={i}>
+          {para.split(/(\$\$[\s\S]+?\$\$|\$[^$\n]+\$)/g).map((part, j) => {
+            if (part.startsWith("$$") && part.endsWith("$$")) {
+              return (
+                <div key={j} className="my-4 overflow-x-auto">
+                  <BlockMath math={part.slice(2, -2)} />
+                </div>
+              );
+            }
+
+            if (part.startsWith("$") && part.endsWith("$")) {
+              return <InlineMath key={j} math={part.slice(1, -1)} />;
+            }
+
+            return <React.Fragment key={j}>{part}</React.Fragment>;
+          })}
+        </p>
+      ))}
+    </div>
+  );
+}
 
 function PublicationPage() {
   const { publication: p, newer, older } = Route.useLoaderData();
@@ -129,11 +158,7 @@ function PublicationPage() {
           <h2 id="abstract-heading" className="text-lg font-semibold">
             Abstract
           </h2>
-          <div className="typeset mt-3 max-w-[65ch] text-[1.125rem]">
-            {p.abstract.split("\n\n").map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
+          <Abstract content={p.abstract} />
         </section>
 
         <aside className="lg:sticky lg:top-8 lg:self-start">
