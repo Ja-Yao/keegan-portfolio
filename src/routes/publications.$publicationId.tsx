@@ -1,12 +1,3 @@
-import {
-  createFileRoute,
-  Link,
-  notFound,
-  useNavigate,
-} from "@tanstack/react-router";
-import { Check, ChevronLeft, ChevronRight, Copy, FileText } from "lucide-react";
-import * as React from "react";
-
 import { Authors, PublicationLinks } from "@/components/publication-parts";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -24,9 +15,18 @@ import {
   getAdjacent,
   getPublication,
 } from "@/lib/publications";
-
-import { InlineMath, BlockMath } from "react-katex";
+import {
+  createFileRoute,
+  Link,
+  notFound,
+  useNavigate,
+} from "@tanstack/react-router";
 import "katex/dist/katex.min.css";
+import { Check, ChevronLeft, ChevronRight, Copy, FileText } from "lucide-react";
+import * as React from "react";
+import Markdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 export const Route = createFileRoute("/publications/$publicationId")({
   loader: ({ params }) => {
@@ -49,31 +49,15 @@ export const Route = createFileRoute("/publications/$publicationId")({
 
 const conferenceStyles =
   "bg-(--venue-conference-soft) text-(--venue-conference-soft-foreground) text-md" as const;
-const journalStyles =
-  "bg-(--venue-conference-soft) text-(--venue-conference-soft-foreground) text-md" as const;
+const journalStyles = buttonVariants({ variant: "destructive" });
 
 function Abstract({ content }: { content: string }) {
+  const text = content.replace(/^[ \t]+/gm, "").trim();
   return (
     <div className="typeset mt-3 max-w-[65ch] text-[1.125rem]">
-      {content.split("\n\n").map((para, i) => (
-        <p key={i}>
-          {para.split(/(\$\$[\s\S]+?\$\$|\$[^$\n]+\$)/g).map((part, j) => {
-            if (part.startsWith("$$") && part.endsWith("$$")) {
-              return (
-                <div key={j} className="my-4 overflow-x-auto">
-                  <BlockMath math={part.slice(2, -2)} />
-                </div>
-              );
-            }
-
-            if (part.startsWith("$") && part.endsWith("$")) {
-              return <InlineMath key={j} math={part.slice(1, -1)} />;
-            }
-
-            return <React.Fragment key={j}>{part}</React.Fragment>;
-          })}
-        </p>
-      ))}
+      <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+        {text}
+      </Markdown>
     </div>
   );
 }
