@@ -187,25 +187,19 @@ const raw: Publication[] = [
       
       $\\textbf{(i) Additive approximation for semi-discrete OT:}$ For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
       
-      $
-      \\text{cost}(\\tilde{\\tau}) \\leq \\text{cost}(\\tau^*) + \\varepsilon
-      $
+      $w(\\tilde{\\tau}) \\leq w(\\tau^*) + \\varepsilon$
       
       in $n^{O(d)} \\log \\frac{\\mathrm{D}}{\\varepsilon}$ time. Here, $\\tau^*$ is the optimal transport plan, $\\mathrm{D}$ is the diameter of the supports of $\\mu$ and $\\nu$, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside a constant-complexity region in $O(1)$ time. Our algorithm works for several ground distances, including the $L_p$-norm and the squared-Euclidean distance.  
       
       $\\textbf{(ii) Relative approximation for semi-discrete OT:}$ For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
       
-      $
-      \\text{cost}(\\tilde{\\tau}) \\leq (1+\\varepsilon)\\text{cost}(\\tau^*)
-      $
+      $w(\\tilde{\\tau}) \\leq (1+\\varepsilon)w(\\tau^*)$
       
       in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ expected time. Here, $\\tau^*$ is the optimal transport plan, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside an orthogonal box in $O(1)$ time. The ground distance is any $L_p$-norm.  
       
       $\\textbf{(iii) Relative approximation for discrete OT:}$ For any parameter $\\varepsilon > 0$, we present a Monte Carlo algorithm that computes a transport plan $\\tilde{\\tau}$ with expected cost
       
-      $
-      \\text{cost}(\\tilde{\\tau}) \\leq (1+\\varepsilon)\\text{cost}(\\tau^*)
-      $
+      $w(\\tilde{\\tau}) \\leq (1+\\varepsilon)w(\\tau^*)$
       
       under any $L_p$-norm in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ time. Here, $\\tau^*$ is an optimal transport plan, and we assume that the spread of the supports of $\\mu$ and $\\nu$ is polynomially bounded.
       `,
