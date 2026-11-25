@@ -183,7 +183,7 @@ const raw: Publication[] = [
     description:
       "First \u03B5-approximation algorithms for semi-discrete optimal transport achieving either log\u03B5 dependence, or near-linear dependence in n, plus an improved discrete OT algorithm.",
     abstract:
-      `Given a $d$-dimensional continuous (resp. discrete) probability distribution $\\mu$ and a discrete distribution $\\nu$, the semi-discrete (resp. discrete) optimal transport (OT) problem asks for computing a minimum-cost plan to transport mass from $\\mu$ to $\\nu$. We assume $n$ to be the number of points in the support of the discrete distributions. In this paper, we present three approximation algorithms for the OT problem with strong provable guarantees.
+      `Given a $d$-dimensional continuous (resp. discrete) probability distribution $\\mu$ and a discrete distribution $\\nu$, the semi-discrete (resp. discrete) optimal transport (OT) problem asks for computing a minimum-cost plan to transport mass from $\\mu$ to $\\nu$. We assume $n$ to be the number of points in the support of the discrete distributions. In this paper, we present three approximation algorithms for the OT problem with strong provable guarantees.  
       
       **(i) Additive approximation for semi-discrete OT:** For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
       
@@ -191,7 +191,7 @@ const raw: Publication[] = [
       \\text{\\textcent}(\\tilde{\\tau}) \\leq \\text{\\textcent}(\\tau^*) + \\varepsilon
       $$
       
-      in $n^{O(d)} \\log \\frac{\\mathrm{D}}{\\varepsilon}$ time. Here, $\\tau^*$ is the optimal transport plan, $\\mathrm{D}$ is the diameter of the supports of $\\mu$ and $\\nu$, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside a constant-complexity region in $O(1)$ time. Our algorithm works for several ground distances, including the $L_p$-norm and the squared-Euclidean distance.
+      in $n^{O(d)} \\log \\frac{\\mathrm{D}}{\\varepsilon}$ time. Here, $\\tau^*$ is the optimal transport plan, $\\mathrm{D}$ is the diameter of the supports of $\\mu$ and $\\nu$, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside a constant-complexity region in $O(1)$ time. Our algorithm works for several ground distances, including the $L_p$-norm and the squared-Euclidean distance.  
       
       **(ii) Relative approximation for semi-discrete OT:** For any parameter $\\varepsilon > 0$, we present an algorithm that computes a semi-discrete transport plan $\\tilde{\\tau}$ with cost
       
@@ -199,7 +199,7 @@ const raw: Publication[] = [
       \\text{\\textcent}(\\tilde{\\tau}) \\leq (1+\\varepsilon)\\text{\\textcent}(\\tau^*)
       $$
       
-      in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ expected time. Here, $\\tau^*$ is the optimal transport plan, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside an orthogonal box in $O(1)$ time. The ground distance is any $L_p$-norm.
+      in $n\\log(n)\\cdot(\\varepsilon^{-1}\\log\\log n)^{O(d)}$ expected time. Here, $\\tau^*$ is the optimal transport plan, and we assume we have access to an oracle that outputs the mass of $\\mu$ inside an orthogonal box in $O(1)$ time. The ground distance is any $L_p$-norm.  
       
       **(iii) Relative approximation for discrete OT:** For any parameter $\\varepsilon > 0$, we present a Monte Carlo algorithm that computes a transport plan $\\tilde{\\tau}$ with expected cost
       
